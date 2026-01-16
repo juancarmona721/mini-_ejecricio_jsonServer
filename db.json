@@ -1,0 +1,29 @@
+{
+  "posts": [
+    {
+      "id": "1",
+      "titulo": "prespucio colorado",
+      "vistas": 1000000
+    },
+    {
+      "id": "2",
+      "titulo": "hola como estas",
+      "vistas": 50
+    },
+    {
+      "id": "23",
+      "titulo": "23 de herrera",
+      "vistas": 1
+    }
+  ],
+  "comentarios": [
+    {
+      "id": "1",
+      "postid": "1",
+      "texto": "excelente negro"
+    }
+  ],
+  "perfil": {
+    "nombre": "juanlaBestia"
+  }
+}

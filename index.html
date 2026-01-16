@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mi Blog API</title>
+    <style>
+        /* Un estilo rápido para que no se vea feo */
+        body { font-family: sans-serif; background-color: #f4f4f4; padding: 20px; }
+        h1 { text-align: center; color: #333; }
+        
+        /* El contenedor de las tarjetas */
+        #contenedor-tarjetas {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        /* El estilo de cada tarjeta */
+        .card {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            width: 250px; /* Ancho fijo */
+            border: 2px solid #ddd;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Mis Posts del Servidor</h1>
+    
+    <div id="contenedor-tarjetas"></div>
+
+    <script>
+        // 1. Llamamos a TU servidor (asegúrate de que la ventana negra siga abierta)
+        fetch('http://localhost:3000/posts')
+            .then(respuesta => respuesta.json()) // Convertimos la respuesta a JSON
+            .then(datos => {
+                
+                // 2. Buscamos el contenedor en el HTML
+                const contenedor = document.getElementById('contenedor-tarjetas');
+
+                // 3. Por cada post que recibimos, creamos una tarjeta
+                datos.forEach(post => {
+                    const tarjeta = `
+                        <div class="card">
+                            <h2>${post.titulo}</h2>
+                            <p>Vistas: <strong>${post.vistas}</strong></p>
+                            <button onclick="alert('ID del post: ${post.id}')">Ver detalle</button>
+                        </div>
+                    `;
+                    // Agregamos la tarjeta al contenedor
+                    contenedor.innerHTML += tarjeta;
+                });
+            })
+            .catch(error => console.error('Error:', error));
+    </script>
+
+</body>
+</html>
